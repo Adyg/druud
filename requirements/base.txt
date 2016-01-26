@@ -7,7 +7,7 @@ django-celery==3.1.16
 django-compressor==1.5
 beautifulsoup4==4.3.2
 Pillow==2.8.1
-sorl-thumbnail==12.2
+sorl-thumbnail==12.4a1
 dj-static==0.0.6
 django-pipeline==1.5.0
 boto==2.39.0

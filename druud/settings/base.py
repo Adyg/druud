@@ -2,7 +2,20 @@
 
 
 from os.path import abspath, basename, dirname, join, normpath
+from os import environ
 from sys import path
+
+
+def get_env_setting(setting, default_value=False):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        if default_value:
+            return default_value
+        else:
+            error_msg = "Set the %s env variable" % setting
+            raise ImproperlyConfigured(error_msg)
 
 
 ########## PATH CONFIGURATION
@@ -206,6 +219,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'druud',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -253,3 +267,6 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 # Sorl
 THUMBNAIL_DEBUG = False
+
+# Druud
+DRUUD_CHECK_BATCH_SIZE = get_env_setting('DRUUD_CHECK_BATCH_SIZE', 10)
