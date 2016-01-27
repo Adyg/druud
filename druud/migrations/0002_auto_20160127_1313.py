@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='check',
-            name='check_status',
-            field=models.CharField(default=b'P', max_length=1, db_index=True, choices=[(b'P', b'Pending'), (b'R', b'Running')]),
+        migrations.AlterField(
+            model_name='checklog',
+            name='elapsed',
+            field=models.FloatField(),
         ),
     ]
