@@ -21,7 +21,12 @@ class Project(models.Model):
 
 class Check(models.Model):
     check_types = (
-            ('H', 'Head'),
+            ('H', 'HEAD'),
+            ('G', 'GET'),
+            ('P', 'POST'),
+            ('U', 'PUT'),
+            ('D', 'DELETE'),
+            ('O', 'OPTIONS'),
         )
 
     # in seconds
@@ -46,16 +51,23 @@ class Check(models.Model):
     port = models.IntegerField(blank=True, null=True)
     http_auth_username = models.TextField(blank=True, null=True)
     http_auth_password = models.TextField(blank=True, null=True)
-    post_data = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
 
         return '%s - %s/%s' % (self.project, self.check_type, self.check_frequency)
 
     def perform_check(self):
+        check_result = False
 
         if self.check_type == 'H':
-            self._head_check()
+            check_result = self._head_check()
+        elif self.check_type == 'G':
+            check_result = self._get_check()
+
+
+        self.mark_checked()
+        CheckLog.create(self, check_result)
+
 
     def to_browser_config(self):
 
@@ -65,17 +77,28 @@ class Check(models.Model):
             'http_auth_username': self.http_auth_username,
             'http_auth_password': self.http_auth_password,
             'headers': self.get_headers_dict(),
+            'payload': self.checkpayload_set.all(),
         }
 
+    def get_browser(self):
+
+        return DruudBrowser(self.to_browser_config())
+
     def _head_check(self):
-        browser = DruudBrowser(self.to_browser_config())
+        browser = self.get_browser()
 
         check_result = browser.head_request()
 
-        self.mark_checked()
-        CheckLog.create(self, check_result)
+        return check_result
 
-        return True
+
+    def _get_check(self):
+        browser = self.get_browser()
+
+        check_result = browser.get_request()
+
+        return check_result
+
 
     def mark_checked(self):
         self.check_status = 'P'
@@ -119,6 +142,19 @@ class CheckRequestHeader(models.Model):
     related_check = models.ForeignKey(Check)
     header_key = models.TextField(blank=False, null=False)
     header_value = models.TextField(blank=True, null=True)
+
+
+def payload_directory(instance, filename):
+    path_parts = ['payloads', str(instance.check.project.pk), str(instance.check.pk), str(instance.pk), filename]
+
+    return '/'.join(path_parts)
+
+
+class CheckPayload(models.Model):
+    related_check = models.ForeignKey(Check)
+    key = models.TextField(blank=False, null=False)
+    value = models.TextField(blank=True, null=True)
+    pfile = models.FileField(upload_to=payload_directory, blank=True, null=True)
 
 
 class CheckLog(models.Model):

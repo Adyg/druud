@@ -6,6 +6,7 @@ class DruudBrowser:
         self.config = config
         self.auth = None
         self.headers = None
+        self.payload = config['payload']
 
         if self.config['http_auth_username'] and self.config['http_auth_password']:
             self.auth = (self.config['http_auth_username'], self.config['http_auth_password'])
@@ -14,14 +15,22 @@ class DruudBrowser:
             self.headers = self.config['headers']
 
     def get_request(self):
+        payload = {}
 
-        return {}
+        for param in self.payload:
+            payload[param.key] = param.value
+
+        response = self.send_request('get', self.config['url'], headers=self.headers, auth=self.auth, params=payload)
+
+        return response
 
     def head_request(self):
-        auth = None
-        headers = None
-
         response = self.send_request('head', self.config['url'], headers=self.headers, auth=self.auth)
+
+        return response
+
+    def get_request(self):
+        response = self.send_request('get', self.config['url'], headers=self.headers, auth=self.auth)
 
         return response
 
@@ -37,7 +46,9 @@ class DruudBrowser:
         try:
             if request_type == 'head':
                 response = requests.head(url, **args)
-            print response.elapsed.total_seconds()
+            elif request_type == 'get':
+                response = requests.get(url, **args)
+
             request_info['status'] = response.ok
             request_info['elapsed'] = response.elapsed.total_seconds()
             request_info['status_code'] = response.status_code
