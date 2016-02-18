@@ -63,6 +63,8 @@ class Check(models.Model):
             check_result = self._head_check()
         elif self.check_type == 'G':
             check_result = self._get_check()
+        elif self.check_type == 'P':
+            check_result = self._post_check()
 
 
         self.mark_checked()
@@ -91,7 +93,6 @@ class Check(models.Model):
 
         return check_result
 
-
     def _get_check(self):
         browser = self.get_browser()
 
@@ -99,6 +100,12 @@ class Check(models.Model):
 
         return check_result
 
+    def _post_check(self):
+        browser = self.get_browser()
+
+        check_result = browser.post_request()
+
+        return check_result
 
     def mark_checked(self):
         self.check_status = 'P'
@@ -145,7 +152,7 @@ class CheckRequestHeader(models.Model):
 
 
 def payload_directory(instance, filename):
-    path_parts = ['payloads', str(instance.check.project.pk), str(instance.check.pk), str(instance.pk), filename]
+    path_parts = ['payloads', str(instance.related_check.project.pk), str(instance.related_check.pk), str(instance.pk), filename]
 
     return '/'.join(path_parts)
 
