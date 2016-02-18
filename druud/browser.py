@@ -1,5 +1,6 @@
 import requests
 
+
 class DruudBrowser:
 
     def __init__(self, config):
@@ -20,7 +21,8 @@ class DruudBrowser:
         for param in self.payload:
             payload[param.key] = param.value
 
-        response = self.send_request('get', self.config['url'], headers=self.headers, auth=self.auth, params=payload)
+        response = self.send_request('get', self.config['url'], headers=self.headers,
+                                     auth=self.auth, params=payload)
 
         return response
 
