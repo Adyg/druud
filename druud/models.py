@@ -24,9 +24,6 @@ class Check(models.Model):
             ('H', 'HEAD'),
             ('G', 'GET'),
             ('P', 'POST'),
-            ('U', 'PUT'),
-            ('D', 'DELETE'),
-            ('O', 'OPTIONS'),
         )
 
     # in seconds
