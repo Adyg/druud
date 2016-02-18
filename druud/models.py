@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.conf import settings
 
 from druud.browser import DruudBrowser
+from alerting.models import Contact
 
 
 class Project(models.Model):
@@ -48,6 +49,7 @@ class Check(models.Model):
     port = models.IntegerField(blank=True, null=True)
     http_auth_username = models.TextField(blank=True, null=True)
     http_auth_password = models.TextField(blank=True, null=True)
+    contact = models.ManyToManyField(Contact)
 
     def __unicode__(self):
 
@@ -205,3 +207,8 @@ class CheckLog(models.Model):
                 error=check_result['error'],
                 error_message=check_result['error_message'],
             )
+
+
+class AlertLog(models.Model):
+    related_check = models.ForeignKey(Check)
+    related_contact = models.ForeignKey(Contact)
