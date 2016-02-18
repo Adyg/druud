@@ -29,11 +29,6 @@ class DruudBrowser:
 
         return response
 
-    def get_request(self):
-        response = self.send_request('get', self.config['url'], headers=self.headers, auth=self.auth)
-
-        return response
-
     def send_request(self, request_type, url, **args):
         response = False
         request_info = {
