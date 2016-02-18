@@ -8,6 +8,7 @@ class DruudBrowser:
         self.auth = None
         self.headers = None
         self.payload = config['payload']
+        self.payload_files = config['payload_files']
 
         if self.config['http_auth_username'] and self.config['http_auth_password']:
             self.auth = (self.config['http_auth_username'], self.config['http_auth_password'])
@@ -16,13 +17,14 @@ class DruudBrowser:
             self.headers = self.config['headers']
 
     def get_request(self):
-        payload = {}
-
-        for param in self.payload:
-            payload[param.key] = param.value
-
         response = self.send_request('get', self.config['url'], headers=self.headers,
-                                     auth=self.auth, params=payload)
+                                     auth=self.auth, params=self.payload)
+
+        return response
+
+    def post_request(self):
+        response = self.send_request('post', self.config['url'], headers=self.headers,
+                                     auth=self.auth, params=self.payload, files=self.payload_files)
 
         return response
 
@@ -45,6 +47,8 @@ class DruudBrowser:
                 response = requests.head(url, **args)
             elif request_type == 'get':
                 response = requests.get(url, **args)
+            elif request_type == 'post':
+                response = requests.post(url, **args)
 
             request_info['status'] = response.ok
             request_info['elapsed'] = response.elapsed.total_seconds()

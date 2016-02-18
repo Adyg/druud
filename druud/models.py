@@ -72,15 +72,20 @@ class Check(models.Model):
 
 
     def to_browser_config(self):
-
-        return {
+        browser_config_dict = {
             'url': self.address,
             'port': self.port,
             'http_auth_username': self.http_auth_username,
             'http_auth_password': self.http_auth_password,
             'headers': self.get_headers_dict(),
-            'payload': self.checkpayload_set.all(),
+            'payload': self.get_payload_dict(),
+            'payload_files': {},
         }
+
+        if self.check_type == 'P':
+            browser_config_dict['payload_files'] = self.get_payload_files_dict()
+
+        return browser_config_dict
 
     def get_browser(self):
 
@@ -122,6 +127,26 @@ class Check(models.Model):
             headers_dict[header.header_key] = header.header_value
 
         return headers_dict
+
+    def get_payload_dict(self):
+        payload_dict = {}
+
+        payload_elements = self.checkpayload_set.filter(pfile__isnull=True)
+
+        for payload_element in payload_elements:
+            payload_dict[payload_element.key] = payload_element.value
+
+        return payload_dict
+
+    def get_payload_files_dict(self):
+        payload_files_dict = {}
+
+        payload_elements = self.checkpayload_set.exclude(pfile__isnull=True).exclude(pfile='')
+
+        for payload_element in payload_elements:
+            payload_files_dict[payload_element.key] = payload_element.pfile
+
+        return payload_files_dict
 
     @classmethod
     def get_pending_checks_batch(cls, batch_size=False):
