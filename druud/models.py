@@ -22,21 +22,21 @@ class Project(models.Model):
 
 class Check(models.Model):
     check_types = (
-            ('H', 'HEAD'),
-            ('G', 'GET'),
-            ('P', 'POST'),
-        )
+        ('H', 'HEAD'),
+        ('G', 'GET'),
+        ('P', 'POST'),
+    )
 
     # in seconds
     check_frequency = (
-            ('5', '5min'),
-            ('10', '10min'),
-        )
+        ('5', '5min'),
+        ('10', '10min'),
+    )
 
     check_status = (
-            ('P', 'Pending'),
-            ('R', 'Running'),
-        )
+        ('P', 'Pending'),
+        ('R', 'Running'),
+    )
 
     uuid = models.UUIDField(primary_key=True, default=uuid_module.uuid4, editable=False)
     name = models.TextField(blank=False, null=False)
@@ -65,10 +65,8 @@ class Check(models.Model):
         elif self.check_type == 'P':
             check_result = self._post_check()
 
-
         self.mark_checked()
         CheckLog.create(self, check_result)
-
 
     def to_browser_config(self):
         browser_config_dict = {
@@ -199,16 +197,43 @@ class CheckLog(models.Model):
 
     @classmethod
     def create(cls, check, check_result):
-        CheckLog.objects.create(
-                related_check=check,
-                result=int(check_result['status']),
-                status=check_result['status_code'],
-                elapsed=check_result['elapsed'],
-                error=check_result['error'],
-                error_message=check_result['error_message'],
-            )
+        check_log = CheckLog.objects.create(
+            related_check=check,
+            result=int(check_result['status']),
+            status=check_result['status_code'],
+            elapsed=check_result['elapsed'],
+            error=check_result['error'],
+            error_message=check_result['error_message'],
+        )
+
+        if check_log.is_alerting():
+            AlertLog.create(check_log)
+
+    def is_alerting(self):
+        if int(self.status) >= 400:
+
+            return True
+
+        return False
 
 
 class AlertLog(models.Model):
     related_check = models.ForeignKey(Check)
     related_contact = models.ForeignKey(Contact)
+    alert_message = models.TextField(blank=False, null=False, default='')
+
+    @classmethod
+    def create(cls, check_log):
+        alert_message = AlertLog.build_alert_message(check_log)
+
+        for contact in check_log.related_check.contact.all():
+            AlertLog.objects.create(
+                related_check=check_log.related_check,
+                related_contact=contact,
+                alert_message=alert_message
+            )
+
+    @classmethod
+    def build_alert_message(cls, check_log):
+
+        return '%s seems to be down. Please check.' % (check_log.related_check.project.name)
