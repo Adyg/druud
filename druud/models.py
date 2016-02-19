@@ -218,9 +218,16 @@ class CheckLog(models.Model):
 
 
 class AlertLog(models.Model):
+    ALERT_STATUSES = (
+        ('P', 'Pending'),
+        ('S', 'Sent'),
+        ('F', 'Failed'),
+    )
+
     related_check = models.ForeignKey(Check)
     related_contact = models.ForeignKey(Contact)
     alert_message = models.TextField(blank=False, null=False, default='')
+    alert_status = models.CharField(max_length=1, choices=ALERT_STATUSES, blank=True, null=True, default='P')
 
     @classmethod
     def create(cls, check_log):
@@ -237,3 +244,14 @@ class AlertLog(models.Model):
     def build_alert_message(cls, check_log):
 
         return '%s seems to be down. Please check.' % (check_log.related_check.project.name)
+
+    @classmethod
+    def get_pending_alerts_batch(cls):
+
+        return cls.objects.filter(alert_status='P')
+
+    def notify(self):
+        self.related_contact.notify(self)
+
+        self.alert_status = 'S'
+        self.save()

@@ -5,6 +5,8 @@ from os.path import abspath, basename, dirname, join, normpath
 from os import environ
 from sys import path
 
+from django.core.exceptions import ImproperlyConfigured
+
 
 def get_env_setting(setting, default_value=False):
     """ Get the environment setting or return exception """
@@ -271,3 +273,8 @@ THUMBNAIL_DEBUG = False
 
 # Druud
 DRUUD_CHECK_BATCH_SIZE = get_env_setting('DRUUD_CHECK_BATCH_SIZE', 10)
+
+# TWILIO
+TWILIO_PHONE_NUMBER = get_env_setting('TWILIO_PHONE_NUMBER')
+TWILIO_ACCOUNT_SID = get_env_setting('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = get_env_setting('TWILIO_AUTH_TOKEN')
