@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %}Druud{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -14,7 +14,11 @@
     <![endif]-->
 
     <!-- This file store project specific CSS -->
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link href="{% static 'css/milligram.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/druud.normalize.css' %}" rel="stylesheet">
+    <link href="{% static 'css/druud.style.css' %}" rel="stylesheet">
+
 
     <!-- Use this to quickly test CSS changes in a template,
         then move to main.css -->
@@ -22,12 +26,18 @@
   </head>
 
   <body>
+    <div class="content">
+      <div class="content-wrap">
 
-    {% block content %}
-    {% endblock content %}
+          {% block content %}
+          {% endblock content %}
 
-    <script src="{% static 'js/main.js' %}"></script>
+      </div>
+    </div>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     {% block extra_js %}{% endblock extra_js %}
+    
+    <script src="{% static 'js/main.js' %}"></script>    
   </body>
 </html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card card-default">
+        <h5>Login</h5>
+        <form method="POST">
+            <fieldset class="text">
+                <div class="errors">
+                </div>    
+                <label for="username">Username</label>
+                <input id="username" type="text" value="" placeholder="Username">
+            </fieldset> 
+
+            <fieldset class="text">
+                <div class="errors">
+                </div>    
+                <label for="password">Password</label>
+                <input id="password" type="password" value="" placeholder="Password">
+            </fieldset>  
+
+            <fieldset>
+                <input type="submit" value="Login" class="button">        
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}

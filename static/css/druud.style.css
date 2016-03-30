@@ -1,0 +1,27 @@
+/* No files to import found in components/**\/* */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\000038}}
+body {
+  background-color: #f7f7f7;
+  font-family: 'Open Sans', sans-serif; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000313}}
+pre, blockquote, dl, figure, table, p, ul, ol, form {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000317}}
+fieldset {
+  border: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000321}}
+.content-wrap {
+  padding: 10px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000325}}
+.card {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  max-width: 320px;
+  padding: 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000331}}
+  .card.card-default {
+    background-color: #fff; }

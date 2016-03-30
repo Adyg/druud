@@ -1,0 +1,34 @@
+@import "compass";
+@import "breakpoint";
+@import "singularitygs";
+
+@import "variables/**/*";
+@import "components/**/*";
+
+body {
+    background-color: $body_bkg;
+    font-family: 'Open Sans', sans-serif;    
+}
+
+pre, blockquote, dl, figure, table, p, ul, ol, form {
+    margin: 0;
+}
+
+fieldset {
+    border: 0;
+}
+
+.content-wrap {
+    padding: 10px;
+}
+
+.card {
+    border: 1px solid $primary_gray;
+    border-radius: 10px;
+    max-width: 320px;
+    padding: 20px;
+
+    &.card-default {
+        background-color: $default_card_bkg;        
+    }
+}
