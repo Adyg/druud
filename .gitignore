@@ -1,6 +1,7 @@
 # Static files
 assets
 media/
+.sass-cache/
 
 # virtualenv
 venv
