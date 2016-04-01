@@ -1,27 +1,129 @@
 /* No files to import found in components/**\/* */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\000038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000311}}
 body {
   background-color: #f7f7f7;
-  font-family: 'Open Sans', sans-serif; }
+  font-family: "Ubuntu", sans-serif; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000313}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000316}}
 pre, blockquote, dl, figure, table, p, ul, ol, form {
   margin: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000320}}
 fieldset {
   border: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000321}}
-.content-wrap {
-  padding: 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000324}}
+a {
+  color: #9b4dca; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000328}}
+h1 {
+  font-size: 30px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000332}}
+h2 {
+  font-size: 21px;
+  color: #dd4814;
+  line-height: 30px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000338}}
+.brand {
+  color: #9b4dca;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 36px;
+  font-weight: 700; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000348}}
+.content-wrap {
+  padding: 10px;
+  max-width: 700px;
+  margin: 0 auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000354}}
+.header {
+  padding: 20px 0;
+  border-bottom: 2px solid #eaeaea; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000359}}
+.header-wrap {
+  overflow: hidden;
+  *zoom: 1;
+  line-height: 36px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000364}}
+.logo {
+  float: left; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000368}}
+.menu {
+  overflow: hidden;
+  *zoom: 1;
+  float: right;
+  list-style: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000373}}
+  .menu li {
+    display: inline-block;
+    margin: 0 0 0 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000377}}
+    .menu li:first-child {
+      margin: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000383}}
+  .menu a:active, .menu a:hover, .menu a.active {
+    color: #dd4814; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000391}}
+.home-greeting {
+  font-size: 30px;
+  text-align: center;
+  padding: 60px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000397}}
 .card {
+  display: none;
   border: 1px solid #eaeaea;
-  border-radius: 10px;
+    border-radius: 10px;
   max-width: 320px;
   padding: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003107}}
   .card.card-default {
     background-color: #fff; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003112}}
+.home-description-item {
+  overflow: hidden;
+  *zoom: 1;
+  text-align: center;
+  margin: 0 0 40px 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003117}}
+  .home-description-item .home-description-icon {
+    color: #dd4814; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003122}}
+.home-description-icon {
+  font-size: 70px;
+  line-height: 80px; }
+
+@media (min-width: 768px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003128}}
+  h2 {
+    margin: 0 0 10px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003132}}
+  .home-description-icon {
+    float: left;
+    text-align: left;
+    width: 20%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003138}}
+  .home-description-text {
+    float: right;
+    width: 79%;
+    text-align: left; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003145}}
+  .home-description-item-alt .home-description-icon {
+    text-align: right;
+    float: right; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/vagrant\/static\/sass\/druud\.style\.scss}line{font-family:\00003150}}
+  .home-description-item-alt .home-description-text {
+    float: left; } }

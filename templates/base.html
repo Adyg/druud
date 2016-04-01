@@ -14,7 +14,9 @@
     <![endif]-->
 
     <!-- This file store project specific CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <link href="{% static 'css/milligram.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/druud.normalize.css' %}" rel="stylesheet">
     <link href="{% static 'css/druud.style.css' %}" rel="stylesheet">
@@ -28,7 +30,20 @@
   <body>
     <div class="content">
       <div class="content-wrap">
-
+          <div class="header">
+            <div class="header-wrap">
+              <div class="logo"><a class="brand" href="/">druud</a></div>
+              <div class="menu">
+                <ul>
+                  <li><a href="#">Lorem</a></li>
+                  <li><a href="#">Lorem</a></li>
+                  <li><a href="#">Lorem</a></li>
+                  <li><a href="#">Lorem</a></li>
+                  <li><a href="#">Lorem</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
           {% block content %}
           {% endblock content %}
 

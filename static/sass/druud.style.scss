@@ -5,9 +5,12 @@
 @import "variables/**/*";
 @import "components/**/*";
 
+$font-stack: 'Ubuntu', sans-serif;
+$logo-font: 'Ubuntu', sans-serif;
+
 body {
-    background-color: $body_bkg;
-    font-family: 'Open Sans', sans-serif;    
+    background-color: $body-bkg;
+    font-family: $font-stack;    
 }
 
 pre, blockquote, dl, figure, table, p, ul, ol, form {
@@ -18,17 +21,135 @@ fieldset {
     border: 0;
 }
 
+a {
+    color: $link-color;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 21px;
+    color: $text-alternative-color;
+    line-height: 30px;
+}
+
+.brand {
+    color: $brand;
+
+    font: {
+        family: $logo-font;
+        size: 36px;
+        weight: 700;
+    }
+}
+
 .content-wrap {
     padding: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 20px 0;
+    border-bottom: 2px solid $primary-gray;    
+}
+
+.header-wrap {
+    @include clearfix;
+    line-height: 36px;
+}
+
+.logo {
+    float: left;
+}
+
+.menu {
+    @include clearfix;
+    float: right;
+    list-style: none;
+
+    li {
+        display: inline-block;
+        margin: 0 0 0 10px;
+
+        &:first-child {
+            margin: 0;
+        }
+    }
+
+    a {
+        &:active,
+        &:hover,
+        &.active {
+            color: $link-active-color;
+        }
+    }
+}
+
+.home-greeting {
+    font-size: 30px;
+    text-align: center;
+    padding: 60px 0;    
 }
 
 .card {
-    border: 1px solid $primary_gray;
-    border-radius: 10px;
+    display: none;
+
+    border: 1px solid $primary-gray {
+        radius: 10px;
+    }
+    
     max-width: 320px;
     padding: 20px;
 
     &.card-default {
-        background-color: $default_card_bkg;        
+        background-color: $default-card-bkg;        
+    }
+}
+
+.home-description-item {
+    @include clearfix;
+    text-align: center;
+    margin: 0 0 40px 0;
+
+    .home-description-icon {
+        color: $text-alternative-color;
+    }
+}
+
+.home-description-icon {
+    font-size: 70px;
+    line-height: 80px;
+}
+
+@media (min-width: 768px) {
+    h2 {
+        margin: 0 0 10px 0;
+    }
+
+    .home-description-icon {
+        float: left;
+        text-align: left;
+        width: 20%;
+    }
+
+    .home-description-text {
+        float: right;
+        width: 79%;
+        text-align: left;
+    }
+
+    .home-description-item-alt {
+        .home-description-icon {
+            text-align: right;
+            float: right;
+        }
+
+        .home-description-text {
+            float: left;
+        }
+
     }
 }
