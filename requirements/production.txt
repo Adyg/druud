@@ -2,3 +2,4 @@
 
 newrelic==2.50.0.39
 waitress==0.8.9
+https://pypi.python.org/packages/7b/c5/a97ed48fcc878e36bb05a3ea700c077360853c0994473a8f6b0ab4c2ddd2/tensorflow-1.0.0-cp27-cp27mu-manylinux1_x86_64.whl
